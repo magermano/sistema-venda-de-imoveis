@@ -1,0 +1,14 @@
+<button class="btn btn-secondary m-1" (click)="onAtualizaProprietario()">Atualizar Lista</button>
+<div class="list-group">
+  <a *ngFor="let proprietario of listaProprietarios"
+     class="list-group-item list-group-item-action"
+     [routerLink]="['/proprietarios', proprietario.id]">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1" style="font-weight: bold">{{ proprietario.nome }}</h5>
+    </div>
+    <p class="mb-1">CPF: {{ proprietario.cpf }}</p>
+    <p class="mb-1">Celular: {{ proprietario.celular }}</p>
+    <p class="mb-1">Email: {{ proprietario.email }}</p>
+    <small>Clique para ver mais detalhes</small>
+  </a>
+</div>

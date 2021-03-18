@@ -1,0 +1,18 @@
+<button class="btn btn-secondary m-1" (click)="onAtualizaTransacao()">Atualizar Lista</button>
+<div class="list-group">
+  <a *ngFor="let transacao of listaTransacoes"
+     class="list-group-item list-group-item-action"
+     [routerLink]="['/transacoes', transacao.id]">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1" style="font-weight: bold">{{ transacao.nome }}</h5>
+    </div>
+    <p class="mb-1">Valor: {{ transacao.valor }}</p>
+    <p class="mb-1">Financiamento: {{ transacao.financiamento }}</p>
+    <p class="mb-1">Proprietário: {{ transacao.proprietario }}</p>
+    <p class="mb-1">Imóvel: {{ transacao.imovel }}</p>
+    <p class="mb-1">Data da Transação: {{ transacao.data_transacao }}</p>
+    <p class="mb-1">Cliente: {{ transacao.cliente }}</p>
+    <p *ngIf="transacao.banco" class="mb-1">Banco: {{ transacao.banco }}</p>
+    <small>Clique para ver mais detalhes</small>
+  </a>
+</div>

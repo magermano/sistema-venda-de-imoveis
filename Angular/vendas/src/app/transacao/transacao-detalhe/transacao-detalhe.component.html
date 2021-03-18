@@ -1,0 +1,35 @@
+<div style="width: 50rem;" class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="mensagemErro">
+  {{ mensagemErro }}
+  <button type="button" class="close" aria-label="Close" (click)="onClearError()">X</button>
+</div>
+<div class="card" style="width: 50rem;">
+  <div class="card-header">
+    Detalhes da Transação
+  </div>
+  <div class="card-body">
+    <h5 class="card-title" style="font-weight: bold">ID do Imóvel: {{ transacao.id }}</h5>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Valor: {{ transacao.valor }}</li>
+    <li class="list-group-item">Financiamento: {{ transacao.financiamento }}</li>
+    <li class="list-group-item">Data da Transação: {{ transacao.data_transacao | date:"dd/MM/YYYY" }}</li>
+    <li class="list-group-item">Proprietário: {{ transacao.proprietario }}</li>
+    <li class="list-group-item">Cliente: {{ transacao.cliente }}</li>
+    <li class="list-group-item">Banco: {{ transacao.banco }}</li>
+    <li class="list-group-item">Imóvel: {{ transacao.imovel }}</li>
+  </ul>
+  <div class="card-footer bg-transparent">
+    <button class="btn btn-info mr-3" (click)="onEdit()">Editar</button>
+    <button class="btn btn-danger" (click)="onPerguntar()">Excluir</button>
+    <br>
+    <br>
+    <span *ngIf="isExclusao">
+      Deseja mesmo excluir?
+      <button class="btn btn-danger" (click)="onDelete()">Sim</button>
+      <button class="btn btn-secondary ml-2" (click)="onRetornar()">Não</button>
+    </span>
+  </div>
+</div>
+
+
+

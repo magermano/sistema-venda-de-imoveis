@@ -1,0 +1,15 @@
+<button class="btn btn-secondary m-1" (click)="onAtualizaImovel()">Atualizar Lista</button>
+<div class="list-group">
+  <a *ngFor="let imovel of listaImoveis"
+     class="list-group-item list-group-item-action"
+     [routerLink]="['/imoveis', imovel.id]">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1" style="font-weight: bold">Matrícula: {{ imovel.matricula }}</h5>
+    </div>
+    <p class="mb-1">Proprietário: {{ imovel.proprietario }}</p>
+    <p class="mb-1">Data da Aquisição: {{ imovel.data_posse | date:"dd/MM/YYYY"}}</p>
+    <p class="mb-1">Categoria: {{ imovel.categoria }}</p>
+
+    <small>Clique para ver mais detalhes</small>
+  </a>
+</div>

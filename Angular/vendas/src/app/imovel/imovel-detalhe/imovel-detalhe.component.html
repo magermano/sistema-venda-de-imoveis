@@ -1,0 +1,53 @@
+<div style="width: 50rem;" class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="mensagemErro">
+  {{ mensagemErro }}
+  <button type="button" class="close" aria-label="Close" (click)="onClearError()">X</button>
+</div>
+<div class="card" style="width: 50rem;">
+  <div class="card-header">
+    Detalhes do Imóvel
+  </div>
+  <div class="card-body">
+    <h5 class="card-title" style="font-weight: bold">Matrícula: {{ imovel.matricula }}</h5>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Proprietário: {{ imovel.proprietario }}</li>
+    <li class="list-group-item">Data da Aquisição: {{ imovel.data_posse | date:"dd/MM/YYYY" }}</li>
+    <li class="list-group-item">Categoria: {{ imovel.categoria }}</li>
+    <li class="list-group-item"
+        *ngFor="let custo of imovel.custos, let i = index;">
+      Gastos nº{{i+1}} - Mês {{ custo.mes | date:"MM/YYYY" }}: <br>
+      <div *ngIf="custo.luz">
+        Luz: {{ custo.luz }}
+      </div>
+      <div *ngIf="custo.agua">
+        Água: {{ custo.agua }}
+      </div>
+      <div *ngIf="custo.condominio">
+        Condomínio: {{ custo.condominio }}
+      </div>
+      <div *ngIf="custo.propaganda">
+        Propaganda: {{ custo.propaganda }}
+      </div>
+    <li class="list-group-item"
+        *ngFor="let imovel of imovel.imoveis, let i = index;">
+      Imóvel nº{{i+1}}: <br>
+      Matrícula: {{ imovel.matricula }} <br>
+      Data de Aquisição: {{ imovel.data_posse | date: "dd/MM/YYYY" }}
+    </li>
+  </ul>
+  <div class="card-footer bg-transparent">
+    <button class="btn btn-info mr-3" (click)="onEdit()">Editar</button>
+    <button class="btn btn-danger" (click)="onPerguntar()">Excluir</button>
+    <br>
+    <br>
+    <span *ngIf="isExclusao">
+      Deseja mesmo excluir?
+      <button class="btn btn-danger" (click)="onDelete()">Sim</button>
+      <button class="btn btn-secondary ml-2" (click)="onRetornar()">Não</button>
+    </span>
+  </div>
+</div>
+
+
+
+

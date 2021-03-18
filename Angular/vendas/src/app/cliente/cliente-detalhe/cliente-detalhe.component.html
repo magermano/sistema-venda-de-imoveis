@@ -1,0 +1,45 @@
+<div class="card" style="width: 50rem;">
+  <div class="card-header">
+    Detalhes do Cliente
+  </div>
+  <div class="card-body">
+    <h5 class="card-title" style="font-weight: bold"> {{ cliente.nome }}</h5>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">CPF: {{ cliente.cpf }}</li>
+    <li class="list-group-item">RG: {{ cliente.rg }}</li>
+    <li class="list-group-item">Data de Nascimento: {{ cliente.data_nascimento | date:"dd/MM/YYYY"}}</li>
+    <li class="list-group-item">Profissão: {{ cliente.profissao }}</li>
+    <li class="list-group-item">Celular: {{ cliente.celular }}</li>
+    <li class="list-group-item">Telefone: {{ cliente.telefone }}</li>
+    <li class="list-group-item">Email: {{ cliente.email }}</li>
+    <li class="list-group-item">Estado Civil: {{ cliente.estado_civil }}</li>
+    <li class="list-group-item"
+        *ngFor="let endereco of cliente.enderecos, let i = index;">
+      Endereço nº{{i+1}}: <br>
+      <div *ngIf="endereco.bloco">
+        Bloco: {{ endereco.bloco }}
+      </div>
+      <div *ngIf="endereco.andar">
+        Andar: {{ endereco.andar }}
+      </div>
+      Rua: {{ endereco.rua }}, nº: {{ endereco.numero }} <br>
+      Bairro: {{ endereco.bairro }} <br>
+      Cidade/Estado: {{ endereco.cidade}}/{{ endereco.estado}} <br>
+      CEP: {{endereco.cep }}</li>
+  </ul>
+  <div class="card-footer bg-transparent">
+    <button class="btn btn-info mr-3" (click)="onEditCliente()">Editar</button>
+<!--    <button class="btn btn-danger" (click)="onDeleteCliente()">Excluir</button>-->
+    <button class="btn btn-danger" (click)="onPerguntar()">Excluir</button>
+    <br>
+    <br>
+    <span *ngIf="isExclusao">
+      Deseja mesmo excluir?
+      <button class="btn btn-danger" (click)="onDeleteCliente()">Sim</button>
+      <button class="btn btn-secondary ml-2" (click)="onRetornar()">Não</button>
+    </span>
+  </div>
+</div>
+
+

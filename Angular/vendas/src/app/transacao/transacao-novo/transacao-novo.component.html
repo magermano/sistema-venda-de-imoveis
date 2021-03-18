@@ -1,0 +1,91 @@
+<h3>Nova Transação</h3>
+<div style="width: 50rem;" class="alert alert-success alert-dismissible fade show" role="alert" *ngIf="mensagem">
+  {{ mensagem }}
+  <button type="button" class="close" aria-label="Close" (click)="onClearError()">X</button>
+</div>
+<div style="width: 50rem;" class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="mensagemErro">
+  {{ mensagemErro }}
+  <button type="button" class="close" aria-label="Close" (click)="onClearError()">X</button>
+</div>
+<form [formGroup]="transacaoForm" (ngSubmit)="onSubmit()" style="width: 50rem;">
+  <div class="form-group">
+    <label for="valor">Valor:</label>
+    <input
+      type="text"
+      id="valor"
+      formControlName="valor"
+      class="form-control">
+    <span *ngIf="!transacaoForm.get('valor').valid && transacaoForm.get('valor').touched"
+          class="help">Digite um valor válido!</span>
+  </div>
+
+  <div class="form-group">
+    <label for="data_transacao">Data da Transacao:</label>
+    <input
+      type="date"
+      id="data_transacao"
+      formControlName="data_transacao"
+      class="form-control">
+    <span *ngIf="!transacaoForm.get('data_transacao').valid && transacaoForm.get('data_transacao').touched"
+          class="help" style="color: red">Digite uma data de transacao válida!</span>
+  </div>
+
+  <div class="form-group">
+    <label for="proprietario">Proprietário:</label>
+    <br>
+    <select class="form-select"
+            aria-label=".form-select-lg example"
+            id="proprietario"
+            formControlName="proprietario">
+      <option *ngFor="let proprietario of lista_proprietario" value="{{ +proprietario.id }}">
+        {{ proprietario.nome}}</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="cliente">Cliente:</label>
+    <br>
+    <select class="form-select"
+            aria-label=".form-select-lg example"
+            id="cliente"
+            formControlName="cliente">
+      <option *ngFor="let cliente of lista_cliente" value="{{ +cliente.id }}">
+        {{ cliente.nome}}</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="imovel">Imóvel:</label>
+    <br>
+    <select class="form-select"
+            aria-label=".form-select-lg example"
+            id="imovel"
+            formControlName="imovel">
+      <option *ngFor="let imovel of lista_imovel" value="{{ +imovel.id }}">
+        {{ imovel.nome}}</option>
+    </select>
+  </div>
+
+  <div class="radio" *ngFor="let opcao of lista_financiamento">
+    <label>
+      <input
+        type="radio"
+        formControlName="financiamento"
+        [value]="opcao">{{ opcao }}
+    </label>
+  </div>
+
+  <div class="form-group">
+    <label for="banco">Banco:</label>
+    <br>
+    <select class="form-select"
+            aria-label=".form-select-lg example"
+            id="banco"
+            formControlName="banco">
+      <option *ngFor="let banco of lista_banco" value="{{ +banco.id }}">
+        {{ banco.nome}}</option>
+    </select>
+  </div>
+
+  <button class="btn btn-primary" type="submit" [disabled]="!transacaoForm.valid">Submit</button>
+</form>

@@ -1,0 +1,15 @@
+<button class="btn btn-secondary m-1" (click)="onAtualizaCliente()">Atualizar Lista</button>
+<div class="list-group">
+  <a *ngFor="let cliente of listaClientes"
+     class="list-group-item list-group-item-action"
+     [routerLink]="['/clientes', cliente.id]">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1" style="font-weight: bold">{{ cliente.nome }}</h5>
+    </div>
+    <p class="mb-1">CPF: {{ cliente.cpf }}</p>
+    <p class="mb-1">Celular: {{ cliente.celular }}</p>
+    <p class="mb-1">Email: {{ cliente.email }}</p>
+    <small>Clique para ver mais detalhes</small>
+  </a>
+</div>
+

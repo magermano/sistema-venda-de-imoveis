@@ -1,0 +1,40 @@
+<h1 style="text-align: center">Categoria</h1>
+<div class="container">
+  <div class="row">
+    <form [formGroup]="categoriaForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input
+          type="text"
+          id="username"
+          formControlName="username"
+          class="form-control">
+        <span *ngIf="!categoriaForm.get('username').valid && categoriaForm.get('username').touched"
+              class="help">Please enter a valid username!</span>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="text"
+          id="email"
+          formControlName="email"
+          class="form-control">
+        <span *ngIf="!categoriaForm.get('email').valid && categoriaForm.get('email').touched"
+              class="help" style="color: red">Please enter a valid email!</span>
+      </div>
+      <div class="radio" *ngFor="let gender of genders">
+        <label>
+          <input
+            type="radio"
+            formControlName="gender"
+            [value]="gender"> {{ gender }}
+          </label>
+      </div>
+      <div>
+        <span *ngIf="!categoriaForm.valid && categoriaForm.touched"
+            class="help">Please enter valid data!</span>
+      </div>
+      <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
+  </div>
+</div>

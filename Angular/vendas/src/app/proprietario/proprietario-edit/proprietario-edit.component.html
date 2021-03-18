@@ -1,0 +1,122 @@
+<h3>Editar Dados de Proprietário</h3>
+<div style="width: 50rem;" class="alert alert-success alert-dismissible fade show" role="alert" *ngIf="mensagem">
+  {{ mensagem }}
+  <button type="button" class="close" aria-label="Close" (click)="onClearError()">X</button>
+</div>
+<div style="width: 50rem;" class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="mensagemErro">
+  {{ mensagemErro }}
+  <button type="button" class="close" aria-label="Close" (click)="onClearError()">X</button>
+</div>
+<form (ngSubmit)="onSubmit()"
+      [formGroup]="this.editForm"
+      style="width: 50rem;"
+      *ngIf="proprietario | async; else loading">
+  <div class="form-group">
+    <label for="nome">Nome:</label>
+    <input
+      type="text"
+      id="nome"
+      formControlName="nome"
+      class="form-control">
+    <span *ngIf="!editForm.get('nome').valid && editForm.get('nome').touched"
+          class="help">Entre com um nome válido!</span>
+  </div>
+
+  <div class="form-group">
+    <label for="cpf">CPF:</label>
+    <input
+      type="text"
+      id="cpf"
+      formControlName="cpf"
+      class="form-control">
+    <span *ngIf="!editForm.get('cpf').valid && editForm.get('cpf').touched"
+          class="help" style="color: red">Entre com um CPF válido!</span>
+  </div>
+
+  <div class="form-group">
+    <label for="rg">RG:</label>
+    <input
+      type="text"
+      id="rg"
+      formControlName="rg"
+      class="form-control">
+    <span *ngIf="!editForm.get('rg').valid && editForm.get('rg').touched"
+          class="help" style="color: red">Entre com um RG válido!</span>
+  </div>
+
+  <div class="form-group">
+    <label for="data_nascimento">Data de Nascimento:</label>
+    <input
+      type="date"
+      id="data_nascimento"
+      formControlName="data_nascimento"
+      class="form-control">
+    <span *ngIf="!editForm.get('data_nascimento').valid && editForm.get('data_nascimento').touched"
+          class="help" style="color: red">Entre com uma data de nascimento válida!</span>
+  </div>
+
+  <div class="form-group">
+    <label for="profissao">Profissão:</label>
+    <input
+      type="text"
+      id="profissao"
+      formControlName="profissao"
+      class="form-control">
+    <span *ngIf="!editForm.get('profissao').valid && editForm.get('profissao').touched"
+          class="help" style="color: red">Entre com uma profissão!</span>
+  </div>
+
+  <div class="form-group">
+    <label for="celular">Celular:</label>
+    <input
+      type="text"
+      id="celular"
+      formControlName="celular"
+      class="form-control">
+    <span *ngIf="!editForm.get('celular').valid && editForm.get('celular').touched"
+          class="help" style="color: red">Entre com um número de celular válido!</span>
+  </div>
+
+  <div class="form-group">
+    <label for="telefone">Telefone:</label>
+    <input
+      type="text"
+      id="telefone"
+      formControlName="telefone"
+      class="form-control">
+    <span *ngIf="!editForm.get('telefone').valid && editForm.get('telefone').touched"
+          class="help" style="color: red">Entre com um número de telefone válido!</span>
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email:</label>
+    <input
+      type="text"
+      id="email"
+      formControlName="email"
+      class="form-control">
+    <span *ngIf="!editForm.get('email').valid && editForm.get('email').touched"
+          class="help" style="color: red">Entre com email válido!</span>
+  </div>
+
+  <div class="form-group">
+    <label for="estado_civil_id">Estado Civil:</label>
+    <br>
+    <select class="form-select"
+            aria-label=".form-select-lg example"
+            id="estado_civil_id"
+            formControlName="estado_civil_id">
+      <option *ngFor="let estado_civil of lista_estadocivil" value="{{ +estado_civil.id }}">
+        {{ estado_civil.nome}}</option>
+    </select>
+  </div>
+
+  <button class="btn btn-primary" type="submit" [disabled]="!editForm.valid">Salvar Alterações</button>
+</form>
+
+<ng-template #loading>
+  <div class="spinner-border" role="status">
+    <span class="visually-hidden"></span>
+  </div>
+</ng-template>
+
